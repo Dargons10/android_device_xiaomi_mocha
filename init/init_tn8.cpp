@@ -36,48 +36,23 @@
 #include <stdio.h>
 #include <string.h>
 
-
 void vendor_load_properties()
 {
-    char platform[PROP_VALUE_MAX];
-    char model[PROP_VALUE_MAX];
+    char device[PROP_VALUE_MAX];
+    char brand[PROP_VALUE_MAX];
     int rc;
 
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
+    rc = property_get("ro.product.device", device);
+    if (!rc || strncmp(device, ANDROID_TARGET, PROP_VALUE_MAX))
         return;
 
-    /* Wi-Fi Only */
-    property_set("ro.build.fingerprint", "nvidia/wx_na_wf/shieldtablet:5.1.1/LMY48C/36442_589.1541:user/release-keys");
-    property_set("ro.build.description", "wx_na_wf-user 5.1.1 LMY48C 36442_589.1541 release-keys");
-    property_set("ro.product.model", "mocha");
-    property_set("ro.radio.noril", "true");
-
-    property_set("ro.product.device", "mocha");
-    property_get("ro.product.model", model);
-    ERROR("Setting build properties for %s model\n", model);
-}
-
-int vendor_handle_control_message(const char *msg, const char *arg)
-{
-    struct service *sf_svc = NULL;
-    struct service *zg_svc = NULL;
-
-    if (!strcmp(msg,"restart") && !strcmp(arg,"consolemode")) {
-        sf_svc = service_find_by_name("surfaceflinger");
-        zg_svc = service_find_by_name("zygote");
-
-        if (sf_svc && zg_svc) {
-            service_stop(zg_svc);
-            service_stop(sf_svc);
-            service_start(sf_svc, NULL);
-            service_start(zg_svc, NULL);
-        } else {
-            ERROR("Required services not found to toggle console mode");
-        }
-
-        return 0;
+    property_get("ro.brand", brand);
+    if (!strcmp(device, "mocha")) {
+        property_set("ro.build.fingerprint", "Xiaomi/mocha/mocha:4.4.4/KTU84P/6.12.8:user/release-keys");
+        property_set("ro.build.description", "mocha-user 4.4.4 KTU84P 6.12.8 release-keys");
+        property_set("ro.product.model", "mocha");
     }
-
-    return -EINVAL;
+    property_set("ro.product.device", "mocha");
+    ERROR("Setting build properties for %s model\n", brand);
 }
+

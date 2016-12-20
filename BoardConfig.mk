@@ -35,12 +35,11 @@ TARGET_NO_RADIOIMAGE := true
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=tn8
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_RAMDISK_OFFSET := 0x02000000
-BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --dt device/xiaomi/mocha/dt.img --tags_offset 0x00000100
 
-TARGET_KERNEL_SOURCE := kernel/nvidia/shieldtablet
-TARGET_KERNEL_CONFIG := cyanogenmod_mocha_defconfig
-BOARD_KERNEL_IMAGE_NAME := zImage-dtb
+TARGET_KERNEL_SOURCE := kernel/xiaomi/l4t
+TARGET_KERNEL_CONFIG := mocha_user_defconfig
+BOARD_KERNEL_IMAGE_NAME := zImage
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 671088640
@@ -93,58 +92,9 @@ BOARD_HARDWARE_CLASS := device/xiaomi/mocha/cmhw/
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/xiaomi/mocha/sepolicy
-BOARD_SEPOLICY_UNION += \
-	te_macros \
-	agpsd.te \
-	app.te \
-	bluetooth.te \
-	bootanim.te \
-	cvc.te \
-	device.te \
-	domain.te \
-	drmserver.te \
-	fild.te \
-	file_contexts \
-	file.te \
-	genfs_contexts \
-	gpload.te \
-	gpsd.te \
-	healthd.te\
-	hostapd.te \
-	icera-crashlogs.te \
-	icera-feedback.te \
-	icera-loader.te \
-	icera-switcherd.te \
-	init.te \
-	installd.te \
-	mediaserver.te \
-	mock_modem.te \
-	netd.te \
-	platform_app.te \
-	property_contexts \
-	property.te \
-	raydium.te \
-	recovery.te \
-	service.te \
-	service_contexts \
-	set_hwui.te \
-	shell.te \
-	surfaceflinger.te \
-	system_app.te \
-	system_server.te \
-	tee.te \
-	ueventd.te \
-	untrusted_app.te \
-	usb.te \
-	ussrd.te \
-	ussr_setup.te \
-	vold.te \
-	wifi_loader.te \
-	wpa.te \
-	zygote.te
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_tn8
-TARGET_LIBINIT_DEFINES_FILE := device/xiaomi/mocha/init/init_tn8.c
+TARGET_LIBINIT_DEFINES_FILE := device/xiaomi/mocha/init/init_tn8.cpp
 
