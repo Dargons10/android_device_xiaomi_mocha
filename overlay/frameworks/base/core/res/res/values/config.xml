@@ -185,9 +185,8 @@
         <item>lte:524288,1048576,2097152,262144,524288,1048576</item>
     </string-array>
 
-    <!-- Boolean indicating associated scan are allowed -->
-    <bool translatable="false" name="config_wifi_framework_enable_associated_autojoin_scan">false</bool>
-
+    <!-- Boolean indicating associated scan are allowed 
+    <bool translatable="false" name="config_wifi_framework_enable_associated_autojoin_scan">false</bool>-->
     <!-- Boolean indicating associated network selection is allowed -->
     <bool translatable="false" name="config_wifi_framework_enable_associated_network_selection">false</bool>
 
