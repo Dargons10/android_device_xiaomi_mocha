@@ -47,9 +47,7 @@ on post-fs-data
     # Set SELinux security contexts on upgrade or policy update.
     restorecon_recursive /mnt/usercalib
 
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
     mkdir /data/nvcam 0700 media camera
-    chown dhcp dhcp /data/misc/dhcp
 
     mkdir /data/misc/wminput 0776 system system
 
