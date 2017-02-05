@@ -77,6 +77,7 @@ MAX_EGL_CACHE_ENTRY_SIZE := 262144
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 TARGET_RECOVERY_DEVICE_DIRS += device/xiaomi/mocha
 TARGET_RECOVERY_FSTAB := device/xiaomi/mocha/rootdir/etc/fstab.tn8
+BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
@@ -89,8 +90,6 @@ WIFI_DRIVER_FW_PATH_STA          := "/etc/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/etc/firmware/fw_bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P          := "/etc/firmware/fw_bcmdhd_p2p.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-#WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
-#WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
 BOARD_HARDWARE_CLASS := device/xiaomi/mocha/cmhw/
 
