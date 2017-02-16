@@ -72,10 +72,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.feature.xml:system/etc/permissions/com.nvidia.feature.xml \
     $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
 
-# idc
-PRODUCT_COPY_FILES += \
-  $(LOCAL_PATH)/idc/touch.idc:system/usr/idc/touch.idc \
-  $(LOCAL_PATH)/idc/sensor00fn11.idc:system/usr/idc/sensor00fn11.idc
 
 # keylayout
 PRODUCT_COPY_FILES += \
