@@ -37,14 +37,10 @@ BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 
-TARGET_KERNEL_SOURCE := kernel/xiaomi/l4t
-TARGET_KERNEL_CONFIG := cyanogenmod_mocha_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/mocha
+TARGET_KERNEL_CONFIG := mocha_user_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --dt device/xiaomi/mocha/dt.img
-
-#TARGET_KERNEL_SOURCE := kernel/nvidia/shieldtablet
-#TARGET_KERNEL_CONFIG := cyanogenmod_mocha_defconfig
-#BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 
 TARGET_PREBUILT_KERNEL := device/xiaomi/mocha/kernel
 #BOARD_KERNEL_SEPARATED_DT := true
@@ -70,6 +66,13 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/xiaomi/mocha/bluetooth
 USE_OPENGL_RENDERER := true
 BOARD_DISABLE_TRIPLE_BUFFERED_DISPLAY_SURFACES := true
 
+#Camera
+TARGET_USE_VENDOR_CAMERA_EXT := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT -DMETADATA_CAMERA_SOURCE
+
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -78,9 +81,9 @@ MAX_EGL_CACHE_SIZE := 4194304
 MAX_EGL_CACHE_ENTRY_SIZE := 262144
 
 # Recovery
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 TARGET_RECOVERY_DEVICE_DIRS += device/xiaomi/mocha
 TARGET_RECOVERY_FSTAB := device/xiaomi/mocha/rootdir/etc/fstab.tn8
+BOARD_NO_SECURE_DISCARD := true
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
@@ -96,7 +99,7 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path
 #WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
 #WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
-BOARD_HARDWARE_CLASS := device/xiaomi/mocha/cmhw/
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/xiaomi/mocha/sepolicy
+
