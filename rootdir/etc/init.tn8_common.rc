@@ -18,6 +18,11 @@ on early-init
     symlink /system/vendor/lbh /lbh
     chmod 0755 /lbh
     chown root system /lbh
+ 
+    #hack to make hacked mipad GL blobs work (need /gl/libEGL_tegra.so path)
+    symlink /system/lib/egl /gl
+    chmod 0755 /gl
+    chown root system /gl
 
 on fs
     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
