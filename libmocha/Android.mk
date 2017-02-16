@@ -20,9 +20,10 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := mocha_audio.c \
-		mocha_libwvm.c
-LOCAL_SHARED_LIBRARIES := libicuuc libicui18n libbinder
-#libstlport
+		mocha_libwvm.c \
+		wvm.c
+LOCAL_SHARED_LIBRARIES := libicuuc libicui18n libbinder libstagefright_foundation
+
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 
 LOCAL_MODULE := libmocha
