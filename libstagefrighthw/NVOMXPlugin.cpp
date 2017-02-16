@@ -63,7 +63,7 @@ NVOMXPlugin::NVOMXPlugin()
         } else
         (*mInit)();
     } else {
-        ALOGE(dlerror());
+        ALOGE("%s", dlerror());
     }
 }
 
