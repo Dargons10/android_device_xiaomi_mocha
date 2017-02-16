@@ -30,3 +30,6 @@ persist.sys.isUsbOtgEnabled=1
 
 # Widevine drm
 drm.service.enabled=true
+
+# Radio
+ro.radio.noril=yes

@@ -35,7 +35,7 @@ NV_DISPLAY_POWER 1
 NV_ACTIVE_POWER 0 1 2
 # Default power mode: can be set to 0, 1, or 2
 NV_DEFAULT_MODE 1
-panelresolution=1280X800
+panelresolution=2048X1536
 NV_FPSLIMIT 0 0 30
 NV_MAX_CORES 0 0 2
 NV_MIN_CORES 0 0 0

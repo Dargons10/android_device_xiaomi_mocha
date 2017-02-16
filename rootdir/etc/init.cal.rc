@@ -7,8 +7,8 @@
 #is strictly prohibited.
 
 on early-init
-    export TOUCH_DATA_DIR /data/misc/touchscreen
-    export TOUCH_CONF_DIR /mnt/factory/touchscreen
+    export TOUCH_CONF_DIR /data/touchscreen
+    export TOUCH_DATA_DIR /data/touchscreen
     export MPU_DATA_DIR /data/misc/mpu
     export MPU_CONF_DIR /mnt/factory/mpu
 

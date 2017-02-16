@@ -13,10 +13,6 @@ on boot
     # write /sys/devices/system/cpu/cpufreq/conservative/down_threshold 50
     # write /sys/devices/system/cpu/cpufreq/conservative/freq_step 3
 
-    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/down_delay 500
-    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/idle_top_freq 204000
-    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
-
     # Enable power gating of fast CPU's
     write /sys/module/cpuidle_t11x/parameters/cpu_power_gating_in_idle 31
     write /sys/module/cpuidle_t11x/parameters/slow_cluster_power_gating_noncpu 1
@@ -32,13 +28,30 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
     chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
     chown system system /sys/devices/system/cpu/cpufreq/interactive/target_loads
     chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
     chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
     chown system system /sys/devices/system/cpu/cpufreq/interactive/boost_factor
     write /sys/devices/system/cpu/cpufreq/interactive/io_busy_threshold 50
+
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/down_delay 500
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/idle_top_freq 204000
+    write /sys/devices/system/cpu/cpuquiet/current_governor balanced
+
+    chown system system /sys/devices/tegradc.0/enable
+    chown system system /sys/devices/tegradc.1/enable
+    chown system system /sys/devices/platform/host1x/nvavp/boost_sclk
+    chown system system /sys/class/input/input1/enabled
+    chown system system /sys/class/input/input2/enabled
+    chown system system /sys/class/input/input3/enabled
+    chown system system /sys/class/input/input4/enabled
+    chown system system /sys/class/input/input5/enabled
+    chown system system /sys/class/input/input6/enabled
+    chown system system /sys/class/input/input7/enabled
 
     write /sys/module/input_cfboost/parameters/boost_freq 1530000
     write /sys/module/input_cfboost/parameters/boost_emc 300000
@@ -52,5 +65,13 @@ on init
     mkdir /mnt/tmp 0770 system system
     mount tmpfs tmpfs /mnt/tmp mode=0775,gid=1003
 
-#set GPS GPIO property, which is used in gps_select
-    setprop ro.gps.gpio 61
+    # Immersion
+    export VIBE_PIPE_PATH /dev/pipes
+    mkdir /dev/pipes 0771 system system
+
+    # Enable PowerService
+service powerservice /vendor/bin/powerservice
+    class main
+    user system
+    group system
+

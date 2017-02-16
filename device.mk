@@ -92,10 +92,8 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml \
-    $(LOCAL_PATH)/audio/nvaudio_fx.xml:system/etc/nvaudio_fx.xml
+    $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml 
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -103,17 +101,12 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     libaudio-resampler \
     libaudiospdif \
-    libtinyalsa \
-    libtinycompress \
+    libstagefrighthw \
     tinycap \
     tinymix \
     tinyplay \
     xaplay
 
-# GPS
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/gpsconfig.xml:system/etc/gps/gpsconfig.xml \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -124,18 +117,29 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
 
+PRODUCT_PACKAGES += \
+    camera.tegra \
+
+
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
+# Wifi
+# All Shield devices xurrently use broadcom wifi / bluetooth modules
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 PRODUCT_PACKAGES += \
     hostapd \
-    wpa_supplicant \
     wpa_supplicant.conf
 
 # Light
+#PRODUCT_PACKAGES += \
+#    lights.tegra
+
+# Missing symbols lib
+
 PRODUCT_PACKAGES += \
-    lights.tegra
+    libmocha
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -152,9 +156,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     setup_fs
 
-# Radio Interface
-PRODUCT_PACKAGES += rild
-
 # Comm Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -165,8 +166,19 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += power.tegra
 
-# Wireless Controller
-$(call inherit-product-if-exists, vendor/xiaomi/mocha/blake-blobs.mk)
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.tegra
+
+# Multi HAL configuration file
+PRODUCT_COPY_FILES += \
+    device/xiaomi/mocha/sensors/etc/hals.conf:system/etc/sensors/hals.conf
+
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml
 
 # Console Mode
 $(call inherit-product-if-exists, vendor/xiaomi/mocha/consolemode-blobs.mk)

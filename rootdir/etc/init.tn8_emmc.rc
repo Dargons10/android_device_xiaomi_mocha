@@ -9,13 +9,18 @@
 import init.tegra.rc
 
 on post-fs-data
-    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/FCT /mnt/factory ro context=u:object_r:factory_file:s0
+    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/PST /persist
+    chown system system /persist
+    chmod 0771 /persist
+    mkdir /persist/property 0700 root root
+    chown system system /persist/serialno
+    chmod 0400 /persist/serialno
 
 # create filesystems if necessary
 service setup_fs /system/bin/setup_fs \
         /dev/block/platform/sdhci-tegra.3/by-name/UDA \
         /dev/block/platform/sdhci-tegra.3/by-name/CAC \
-        /dev/block/platform/sdhci-tegra.3/by-name/FCT \
+        /dev/block/platform/sdhci-tegra.3/by-name/PST \
         /dev/block/platform/sdhci-tegra.3/by-name/RP3
     class core
     user root

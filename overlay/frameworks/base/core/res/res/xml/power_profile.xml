@@ -91,8 +91,8 @@
   </array>
 
   <!-- This is the battery capacity in mAh -->
-  <item name="battery.capacity">5200</item>
+  <item name="battery.capacity">6700</item>
       <!--
-      Battery capacity is 5200 mAH (at 3.8 Volts)
+      Battery capacity is 6700 mAH (at 3.8 Volts)
       -->
 </device>
