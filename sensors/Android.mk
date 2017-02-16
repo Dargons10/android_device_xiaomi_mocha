@@ -33,14 +33,12 @@ LOCAL_SHARED_LIBRARIES := \
     libcutils \
     libdl \
     liblog \
-    libutils \
-    libstlport \
+    libutils 
 
 
 LOCAL_STRIP_MODULE := false
 
 LOCAL_C_INCLUDES := \
-    external/stlport/stlport \
     bionic \
 
 include $(BUILD_SHARED_LIBRARY)

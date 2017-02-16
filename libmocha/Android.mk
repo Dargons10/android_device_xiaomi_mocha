@@ -28,7 +28,6 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 LOCAL_MODULE := libmocha
 
 LOCAL_C_INCLUDES := \
-    external/stlport/stlport \
     external/icu/icu4c/source/common
 
 LOCAL_MODULE_TAGS := optional

@@ -17,6 +17,7 @@
 PRODUCT_AAPT_CONFIG += xlarge large
 TARGET_SCREEN_HEIGHT := 2048
 TARGET_SCREEN_WIDTH := 1536
+TARGET_TEGRA_VERSION := t124
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
@@ -40,7 +41,6 @@ PRODUCT_PACKAGES += \
     init.tn8.rc \
     init.tn8.usb.rc \
     init.tn8_common.rc \
-    init.tn8_emmc.rc \
     init.ussrd.rc \
     power.tn8.rc \
     ueventd.tn8.rc
