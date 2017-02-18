@@ -98,6 +98,7 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudiospdif \
     libstagefrighthw \
+    libstlport \
     tinycap \
     tinymix \
     tinyplay \
