@@ -137,7 +137,9 @@ PRODUCT_PACKAGES += \
 # Missing symbols lib
 
 PRODUCT_PACKAGES += \
-    libmocha
+    libmocha_audio \
+    libmocha_camera \
+    libmocha_wvm
 
 # Charger
 PRODUCT_PACKAGES += \
