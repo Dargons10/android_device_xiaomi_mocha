@@ -140,6 +140,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libmocha
+    libpowerservice_client
 
 # Charger
 PRODUCT_PACKAGES += \
