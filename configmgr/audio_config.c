@@ -16,7 +16,7 @@
 
 #define LOG_TAG "tiny_hal_config"
 /*#define LOG_NDEBUG 0*/
-#undef NDEBUG
+//#undef NDEBUG
 
 #include <stddef.h>
 #include <errno.h>
