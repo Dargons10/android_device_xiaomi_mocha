@@ -95,7 +95,7 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
-    audio.primary.tegra.so \
+    audio.primary.tegra \
     libaudiohalcm \
     libaudio-resampler \
     libaudiospdif \
