@@ -142,7 +142,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libmocha_audio \
     libmocha_camera \
-    libmocha_wvm
+    libmocha_wvm \
+    libpowerservice_client
 
 # Charger
 PRODUCT_PACKAGES += \

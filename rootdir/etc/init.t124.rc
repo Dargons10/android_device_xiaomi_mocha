@@ -69,9 +69,3 @@ on init
     export VIBE_PIPE_PATH /dev/pipes
     mkdir /dev/pipes 0771 system system
 
-    # Enable PowerService
-service powerservice /vendor/bin/powerservice
-    class main
-    user system
-    group system
-
