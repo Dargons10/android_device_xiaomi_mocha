@@ -35,7 +35,7 @@ LOCAL_CFLAGS += -Werror -Wno-error=unused-parameter -Wno-unused-parameter
 
 LOCAL_C_INCLUDES += \
 	external/tinycompress/include \
-	external/tinyalsa/include \
+	device/xiaomi/mocha/tinyalsa/include \
 	external/tinyhal/include \
 	external/expat/lib \
 	$(call include-path-for, audio-utils)
