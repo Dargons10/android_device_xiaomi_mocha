@@ -100,11 +100,12 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudiospdif \
     libstagefrighthw \
-    libstlport \
+    libtinycompress \
     tinycap_mocha \
     tinymix_mocha \
     tinyplay_mocha \
     libtinyalsa_mocha \
+    libtinyalsa \
     xaplay
 
 
