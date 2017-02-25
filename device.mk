@@ -89,19 +89,22 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml 
+    $(LOCAL_PATH)/audio/audio.mocha.xml:system/etc/audio.mocha.xml
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
+    audio.primary.tegra.so \
+    libaudiohalcm \
     libaudio-resampler \
     libaudiospdif \
     libstagefrighthw \
     libstlport \
-    tinycap \
-    tinymix \
-    tinyplay \
+    tinycap_mocha \
+    tinymix_mocha \
+    tinyplay_mocha \
+    libtinyalsa_mocha \
     xaplay
 
 

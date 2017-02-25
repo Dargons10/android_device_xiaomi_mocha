@@ -27,7 +27,6 @@ LOCAL_CFLAGS += -Werror -Wno-error=unused-parameter -Wno-unused-parameter
 
 LOCAL_C_INCLUDES += \
 	external/tinycompress/include \
-	external/tinyalsa/include \
 	external/tinyhal/include \
 	external/expat/lib \
 	$(call include-path-for, audio-utils)
@@ -41,7 +40,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libdl	\
 	liblog	\
 	libexpat	\
-	libtinyalsa	\
+	libtinyalsa_mocha	\
 
 include $(BUILD_SHARED_LIBRARY)
 

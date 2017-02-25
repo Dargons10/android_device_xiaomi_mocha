@@ -23,7 +23,7 @@ ifeq ($(strip $(BOARD_USES_TINYHAL_AUDIO)),true)
 include $(CLEAR_VARS)
 
 ifeq ($(strip $(TINYHAL_AUDIO_MODULE_NAME)),)
-LOCAL_MODULE := audio.primary.$(TARGET_DEVICE)
+LOCAL_MODULE := audio.primary.$(TARGET_BOARD_PLATFORM)
 else
 LOCAL_MODULE := audio.$(strip $(TINYHAL_AUDIO_MODULE_NAME)).$(TARGET_DEVICE)
 endif
@@ -52,7 +52,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libdl	\
 	liblog	\
 	libhardware_legacy \
-	libtinyalsa	\
+	libtinyalsa_mocha	\
 	libtinycompress	\
 	libaudiohalcm \
 	libaudioutils \
