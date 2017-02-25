@@ -139,7 +139,7 @@ PRODUCT_PACKAGES += \
 # Missing symbols lib
 
 PRODUCT_PACKAGES += \
-    libmocha
+    libmocha \
     libpowerservice_client
 
 # Charger

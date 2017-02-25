@@ -15,30 +15,18 @@
 
 LOCAL_PATH:= $(call my-dir)
 
-# HAL module implemenation, not prelinked and stored in
-# hw/<COPYPIX_HARDWARE_MODULE_ID>.<ro.board.platform>.so
 include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := mocha_audio.c \
-		mocha_libwvm.c
-LOCAL_SHARED_LIBRARIES := libicuuc libicui18n libbinder
-#libstlport
+LOCAL_SRC_FILES := mocha_omx.c
+LOCAL_SHARED_LIBRARIES := libbinder
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-
 LOCAL_MODULE := libmocha
-
-LOCAL_C_INCLUDES := \
-    external/stlport/stlport \
-    external/icu/icu4c/source/common
-
 LOCAL_MODULE_TAGS := optional
-
 include $(BUILD_SHARED_LIBRARY)
-
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := powerservice_client.c 
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 LOCAL_MODULE := libpowerservice_client
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
