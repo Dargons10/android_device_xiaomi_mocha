@@ -140,9 +140,8 @@ PRODUCT_PACKAGES += \
 # Missing symbols lib
 
 PRODUCT_PACKAGES += \
-    libmocha_audio \
     libmocha_camera \
-    libmocha_wvm \
+    libmocha_omx \
     libpowerservice_client
 
 # Charger
