@@ -69,9 +69,9 @@ on init
     export VIBE_PIPE_PATH /dev/pipes
     mkdir /dev/pipes 0771 system system
 
-    # Enable PowerService
-service powerservice /vendor/bin/powerservice
+# Loads real wifi and bt mac from /dev/block/platform/sdhci-tegra.3/by-name/BKB
+service conn_wifi /system/bin/conn_init -op
     class main
-    user system
-    group system
-
+    user root
+    group root
+    oneshot

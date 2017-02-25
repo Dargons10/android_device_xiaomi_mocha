@@ -13,13 +13,3 @@ int _ZN7android5Fence4waitEj(unsigned int timeout)
     return _ZN7android5Fence4waitEi((int)timeout);
 }
 
-
-void _ZN7android18PowerServiceClientC1Ev() {
-}
-
-void _ZN7android18PowerServiceClient13sendPowerHintEiPv(int a, void* b) {
-
-}
-
-
-

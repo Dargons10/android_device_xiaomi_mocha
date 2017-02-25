@@ -89,19 +89,23 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml 
+    $(LOCAL_PATH)/audio/audio.mocha.xml:system/etc/audio.mocha.xml
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
+    audio.primary.tegra \
+    libaudiohalcm \
     libaudio-resampler \
     libaudiospdif \
     libstagefrighthw \
-    libstlport \
-    tinycap \
-    tinymix \
-    tinyplay \
+    libtinycompress \
+    tinycap_mocha \
+    tinymix_mocha \
+    tinyplay_mocha \
+    libtinyalsa_mocha \
+    libtinyalsa \
     xaplay
 
 
@@ -114,8 +118,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
 
-#PRODUCT_PACKAGES += \
-#    camera.tegra 
+PRODUCT_PACKAGES += \
+    camera.tegra
 
 
 # Wifi
@@ -137,9 +141,9 @@ PRODUCT_PACKAGES += \
 # Missing symbols lib
 
 PRODUCT_PACKAGES += \
-    libmocha_audio \
     libmocha_camera \
-    libmocha_wvm
+    libmocha_omx \
+    libpowerservice_client
 
 # Charger
 PRODUCT_PACKAGES += \
