@@ -36,7 +36,7 @@ typedef struct effect_interface_s **effect_handle_t;
 #include <hardware/audio.h>
 
 #include <tinyalsa/asoundlib.h>
-#include <tinyalsa/mixer.h>
+
 #include <expat.h>
 
 #include <tinyhal/audio_config.h>
