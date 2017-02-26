@@ -35,3 +35,7 @@ drm.service.enabled=true
 
 # Radio
 ro.radio.noril=yes
+
+# We are using old omx blobs
+media.stagefright.less-secure=true
+media.stagefright.legacyencoder=true
