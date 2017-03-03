@@ -152,10 +152,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_CHARACTERISTICS := tablet
 
-# USB
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     setup_fs
