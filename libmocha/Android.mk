@@ -12,7 +12,7 @@ LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := mocha_omx.c
+LOCAL_SRC_FILES := mocha_omx.cpp
 LOCAL_SHARED_LIBRARIES := libbinder
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE := libmocha_omx
