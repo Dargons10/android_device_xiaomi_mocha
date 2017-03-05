@@ -28,6 +28,7 @@ import java.io.File;
  * otherwise visible-when-inactive keys
  */
 
+
 public class KeyDisabler {
     private static final String CONTROL_PATH =
             "/proc/touchpanel/capacitive_keys_enable";
@@ -37,10 +38,10 @@ public class KeyDisabler {
     }
 
     public static boolean isActive() {
-        return "0".equals(FileUtils.readOneLine(CONTROL_PATH));
+        return "1".equals(FileUtils.readOneLine(CONTROL_PATH));
     }
 
     public static boolean setActive(boolean state) {
-        return FileUtils.writeLine(CONTROL_PATH, state ? "1" : "0");
+        return FileUtils.writeLine(CONTROL_PATH, state ? "0" : "1");
     }
 }

@@ -72,9 +72,9 @@ TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += \
+BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
-    $(LOCAL_PATH)/cmhw
+    device/xiaomi/mocha/cmhw
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
