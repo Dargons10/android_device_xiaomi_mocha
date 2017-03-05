@@ -82,7 +82,8 @@ on boot
 
 ## cmhw permissions
 # key disabler
-    chown system system /sys/devices/platform/tegra12-i2c.3/i2c-3/3-004a/disable_keys
+    chown system system /sys/devices/platform/tegra12-i2c.3/i2c-3/3-004a/enable_keys
+    chown system system /sys/devices/platform/tegra12-i2c.3/i2c-3/3-0020/input/input3/0dbutton
 
 # CMU
     chown system system /sys/devices/platform/host1x/tegradc.0/cmu_enable

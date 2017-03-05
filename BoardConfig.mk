@@ -75,9 +75,9 @@ BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT -DMETADATA_CAMERA_SOURCE
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += \
+BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
-    $(LOCAL_PATH)/cmhw
+    device/xiaomi/mocha/cmhw
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
