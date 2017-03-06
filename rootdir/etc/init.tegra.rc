@@ -85,6 +85,9 @@ on boot
     chown system system /sys/devices/platform/tegra12-i2c.3/i2c-3/3-004a/enable_keys
     chown system system /sys/devices/platform/tegra12-i2c.3/i2c-3/3-0020/input/input3/0dbutton
 
+# vibrator intensity
+    chown system system /sys/vibrator/pwmvalue
+
 # CMU
     chown system system /sys/devices/platform/host1x/tegradc.0/cmu_enable
     chown system system /sys/devices/platform/host1x/tegradc.1/cmu_enable
