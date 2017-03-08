@@ -76,6 +76,9 @@ BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
     device/xiaomi/mocha/cmhw
 
+# Charger
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
