@@ -79,8 +79,12 @@ BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
     device/xiaomi/mocha/cmhw
 
-# Charger
+# Offmode Charging
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BACKLIGHT_PATH := "/sys/class/backlight/lcd-backlight/brightness"
+RED_LED_PATH := "/sys/class/leds/red/brightness"
+GREEN_LED_PATH := "/sys/class/leds/green/brightness"
+BLUE_LED_PATH := "/sys/class/leds/blue/brightness"
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true

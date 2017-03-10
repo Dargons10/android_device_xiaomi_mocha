@@ -147,11 +147,6 @@ PRODUCT_PACKAGES += \
     libmocha_omx \
     libpowerservice_client
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger \
-    charger_res_images
-
 PRODUCT_CHARACTERISTICS := tablet
 
 # USB
