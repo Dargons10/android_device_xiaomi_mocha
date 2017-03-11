@@ -50,7 +50,7 @@ service charger /charger
     class charger
 
 on charger
-    setprop persist.sys.usb.config mtp
+    setprop sys.usb.config mtp
     mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
     write /sys/devices/system/cpu/cpuquiet/current_governor runnable
