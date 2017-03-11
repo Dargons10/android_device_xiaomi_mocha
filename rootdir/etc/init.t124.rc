@@ -19,7 +19,7 @@ on boot
     write /sys/module/cpuidle/parameters/power_down_in_idle 1
 
     write /sys/module/cpuidle_t11x/parameters/stop_mc_clk_in_idle 1
-    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+    write /sys/devices/system/cpu/cpuquiet/current_governor userspace
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
 
     write /sys/module/tegra12_emc/parameters/pasr_enable 1
@@ -40,7 +40,7 @@ on boot
 
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/down_delay 500
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/idle_top_freq 204000
-    write /sys/devices/system/cpu/cpuquiet/current_governor balanced
+    write /sys/devices/system/cpu/cpuquiet/current_governor userspace
 
     chown system system /sys/devices/tegradc.0/enable
     chown system system /sys/devices/tegradc.1/enable
