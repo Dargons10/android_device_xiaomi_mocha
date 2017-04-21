@@ -124,6 +124,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     camera.tegra
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
 
 # Wifi
 PRODUCT_COPY_FILES += \
