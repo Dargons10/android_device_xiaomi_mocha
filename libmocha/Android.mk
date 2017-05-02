@@ -3,9 +3,48 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := sensor.c \
-		camera.c
-LOCAL_SHARED_LIBRARIES :=  libcamera_client libui libgui libutils
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES:= \
+        camera/Camera.cpp \
+        camera/CameraMetadata.cpp \
+        camera/CaptureResult.cpp \
+        camera/CameraParameters2.cpp \
+        camera/ICamera.cpp \
+        camera/ICameraClient.cpp \
+        camera/ICameraService.cpp \
+        camera/ICameraServiceListener.cpp \
+        camera/ICameraServiceProxy.cpp \
+        camera/ICameraRecordingProxy.cpp \
+        camera/ICameraRecordingProxyListener.cpp \
+        camera/camera2/ICameraDeviceUser.cpp \
+        camera/camera2/ICameraDeviceCallbacks.cpp \
+        camera/camera2/CaptureRequest.cpp \
+        camera/camera2/OutputConfiguration.cpp \
+        camera/CameraBase.cpp \
+        camera/CameraUtils.cpp \
+        camera/VendorTagDescriptor.cpp \
+        camera/CameraParameters.cpp \
+        sensor.c \
+        camera.c
+
+
+LOCAL_SHARED_LIBRARIES := \
+        libcutils \
+        libutils \
+        liblog \
+        libbinder \
+        libhardware \
+        libui \
+        libgui \
+        libcamera_metadata
+
+LOCAL_C_INCLUDES += \
+        $(LOCAL_PATH)/camera/include \
+        system/media/camera/include \
+        system/media/private/camera/include
+
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE := libmocha_camera
 LOCAL_MODULE_TAGS := optional
