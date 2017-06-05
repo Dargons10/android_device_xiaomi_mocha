@@ -124,10 +124,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     camera.tegra
 
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
