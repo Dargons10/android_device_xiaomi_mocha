@@ -57,3 +57,10 @@ service media /system/bin/mediaserver
     ioprio rt 4
     writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
 
+# brcm-uim-sysfs (BT/FM/ANT+)
+service uim /system/bin/brcm-uim-sysfs
+    class late_start
+    user root
+    group bluetooth net_bt_admin net_bt
+    seclabel u:r:uim:s0
+
