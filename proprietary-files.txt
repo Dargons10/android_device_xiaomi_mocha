@@ -93,7 +93,6 @@ vendor/bin/ussrd
 
 vendor/lib/libardrv_dynamic.so
 vendor/lib/libaudioavp.so
-vendor/lib/libbt-vendor.so
 vendor/lib/libcgdrv.so
 vendor/lib/libcuda.so
 vendor/lib/libdrmdecrypt.so
