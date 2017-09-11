@@ -67,9 +67,8 @@ lib/hw/audio_policy.tegra.so
 lib/hw/camera.vendor.tegra.so
 lib/hw/keystore.tegra.so
 lib/hw/lights.tegra.so
-lib/hw/sensors.lsm6db0.so
-lib/hw/sensors.mpu6515.so
-lib/hw/sensors.tegra.so
+lib/hw/sensors.lsm6db0.so:lib/libsensors.lsm6db0.so
+lib/hw/sensors.mpu6515.so:lib/libsensors.mpu6515.so
 lib/hw/ts.default.so
 
 lib/nvcms/device.cfg
