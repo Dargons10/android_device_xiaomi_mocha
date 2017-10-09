@@ -125,12 +125,16 @@ TARGET_RECOVERY_DEVICE_DIRS += device/xiaomi/mocha
 TARGET_RECOVERY_FSTAB := device/xiaomi/mocha/rootdir/etc/fstab.tn8
 BOARD_NO_SECURE_DISCARD := true
 
-# SELinux
+
 BOARD_SEPOLICY_DIRS += device/xiaomi/mocha/sepolicy
 
 #SHIMS
 TARGET_LD_SHIM_LIBS := \
-    /system/vendor/lib/egl/libEGL_tegra.so|libshim_egl.so
+    /system/vendor/lib/egl/libEGL_tegra.so|libshim_egl.so \
+    /system/vendor/lib/libnvomxadaptor.so|libnvomxadaptor_shim.so 
+
+# ThermalHAL
+TARGET_THERMALHAL_VARIANT := tegra
 
 # workaround for devices that uses old GPU blobs
 BOARD_EGL_WORKAROUND_BUG_10194508 := true

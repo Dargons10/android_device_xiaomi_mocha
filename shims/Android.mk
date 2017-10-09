@@ -34,10 +34,22 @@ LOCAL_MODULE := libshim_zw
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
-# EGL Shim
+## EGL Shim
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := egl_shim.cpp
 LOCAL_MODULE := libshim_egl
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
+
+## libnvomxadaptor_shim
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libnvomxadaptor_shim.cpp
+LOCAL_SHARED_LIBRARIES          += libui libgui libstagefright_foundation
+LOCAL_C_INCLUDES                += framework/native/include frameworks/av/include
+LOCAL_CFLAGS                    += -Wno-unused-private-field
+LOCAL_MODULE := libnvomxadaptor_shim
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_SHARED_LIBRARY)
+
