@@ -191,3 +191,16 @@ PRODUCT_COPY_FILES += \
 # Console Mode
 $(call inherit-product-if-exists, vendor/xiaomi/mocha/consolemode-blobs.mk)
 
+
+# Graphics shim
+PRODUCT_PACKAGES += libs \
+                    libshim_zw \
+                    libshim_atomic
+
+# HIDL HALs
+$(call inherit-product, device/xiaomi/mocha/hidl.mk)
+
+# HIDL Manifest
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+
