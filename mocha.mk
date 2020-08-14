@@ -112,6 +112,9 @@ PRODUCT_PACKAGES += \
     libshim_atomic \
     libshim_egl
 
+# GO EDITION
+$(call inherit-product, device/xiaomi/mocha/go_mocha.mk)
+
 # Health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@1.0-impl \
@@ -154,6 +157,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.media.omx@1.0-impl \
     android.hardware.media.omx@1.0-service
+
+# Memory Optimizations
+PRODUCT_PROPERTY_OVERRIDES += \
+     ro.vendor.qti.am.reschedule_service=true \
+     ro.vendor.qti.sys.fw.use_trim_settings=true \
+     ro.vendor.qti.sys.fw.trim_empty_percent=50 \
+     ro.vendor.qti.sys.fw.trim_cache_percent=100 \
+     ro.vendor.qti.sys.fw.empty_app_percent=25
 
 # Memtrack
 PRODUCT_PACKAGES += \
@@ -251,7 +262,6 @@ PRODUCT_PACKAGES += \
 # USB HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service
-
 
 # Vendor seccomp policy files for media components:
 PRODUCT_COPY_FILES += \
