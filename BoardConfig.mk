@@ -14,7 +14,10 @@
 # limitations under the License.
 #
 
-# This variable is set first, so it can be overridden
+
+# Path
+LOCAL_PATH := device/xiaomi/mocha
+
 # by BoardConfigVendor.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/mocha/include
@@ -25,6 +28,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a15
+
 # Board
 TARGET_BOARD_PLATFORM := tegra
 TARGET_NO_BOOTLOADER := true
