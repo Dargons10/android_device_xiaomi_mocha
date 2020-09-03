@@ -18,13 +18,19 @@
 
 #define NV_OMX_PLUGIN_H_
 
+#ifdef BUILD_GOOGLETV
+#include <hardware/OMXPluginBaseExt.h>
+#else
 #include <media/hardware/OMXPluginBase.h>
-
-OMX_COMPONENTTYPE *gOMXDrmPlayComponent;
+#endif
 
 namespace android {
 
+#ifdef BUILD_GOOGLETV
+struct NVOMXPlugin : public OMXPluginBaseExt {
+#else
 struct NVOMXPlugin : public OMXPluginBase {
+#endif
     NVOMXPlugin();
     virtual ~NVOMXPlugin();
 
@@ -46,6 +52,14 @@ struct NVOMXPlugin : public OMXPluginBase {
             const char *name,
             Vector<String8> *roles);
 
+#ifdef BUILD_GOOGLETV
+    virtual OMX_ERRORTYPE setupTunnel(
+            OMX_COMPONENTTYPE *outputComponent,
+            OMX_U32 outputPortIndex,
+            OMX_COMPONENTTYPE *inputComponent,
+            OMX_U32 inputPortIndex);
+#endif
+
 private:
     void *mLibHandle;
 
@@ -62,12 +76,20 @@ private:
     typedef OMX_ERRORTYPE (*GetRolesOfComponentFunc)(
             OMX_STRING, OMX_U32 *, OMX_U8 **);
 
+#ifdef BUILD_GOOGLETV
+    typedef OMX_ERRORTYPE (*SetupTunnelFunc)(
+            OMX_HANDLETYPE, OMX_U32, OMX_HANDLETYPE, OMX_U32);
+#endif
+
     InitFunc mInit;
     DeinitFunc mDeinit;
     ComponentNameEnumFunc mComponentNameEnum;
     GetHandleFunc mGetHandle;
     FreeHandleFunc mFreeHandle;
     GetRolesOfComponentFunc mGetRolesOfComponentHandle;
+#ifdef BUILD_GOOGLETV
+    SetupTunnelFunc mSetupTunnel;
+#endif
 
     NVOMXPlugin(const NVOMXPlugin &);
     NVOMXPlugin &operator=(const NVOMXPlugin &);

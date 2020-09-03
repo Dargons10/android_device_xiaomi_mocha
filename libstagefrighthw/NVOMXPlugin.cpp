@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-#include "NVOMXPlugin.h"
-
+//#define LOG_NDEBUG 0
 #define LOG_TAG "NVOMXPlugin"
-
 #include <utils/Log.h>
 
-
+#include "NVOMXPlugin.h"
 #include <dlfcn.h>
-#include <string.h>
 
 #include <media/hardware/HardwareAPI.h>
+
+OMX_COMPONENTTYPE * gOMXDrmPlayComponent = 0;
 
 namespace android {
 
@@ -33,14 +32,13 @@ OMXPluginBase *createOMXPlugin() {
 }
 
 NVOMXPlugin::NVOMXPlugin()
-    : mLibHandle(dlopen("/system/vendor/lib/libnvomx.so", RTLD_NOW)),
+    : mLibHandle(dlopen("system/vendor/lib/libnvomx.so", RTLD_NOW)),
       mInit(NULL),
       mDeinit(NULL),
       mComponentNameEnum(NULL),
       mGetHandle(NULL),
       mFreeHandle(NULL),
       mGetRolesOfComponentHandle(NULL) {
-
     if (mLibHandle != NULL) {
         mInit = (InitFunc)dlsym(mLibHandle, "OMX_Init");
         mDeinit = (DeinitFunc)dlsym(mLibHandle, "OMX_Deinit");
@@ -55,15 +53,7 @@ NVOMXPlugin::NVOMXPlugin()
             (GetRolesOfComponentFunc)dlsym(
                     mLibHandle, "OMX_GetRolesOfComponent");
 
-        if (!mInit || !mDeinit || !mComponentNameEnum || !mGetHandle ||
-             !mFreeHandle || !mGetRolesOfComponentHandle) {
-            ALOGE("Error with dlsym()");
-            dlclose(mLibHandle);
-            mLibHandle = NULL;
-        } else
         (*mInit)();
-    } else {
-        ALOGE("%s", dlerror());
     }
 }
 
@@ -80,35 +70,37 @@ OMX_ERRORTYPE NVOMXPlugin::makeComponentInstance(
         const char *name,
         const OMX_CALLBACKTYPE *callbacks,
         OMX_PTR appData,
-        OMX_COMPONENTTYPE **component) {
-    OMX_ERRORTYPE err = OMX_ErrorUndefined;
+        OMX_COMPONENTTYPE **component)
+{
     if (mLibHandle == NULL) {
-        goto exit;
+        return OMX_ErrorUndefined;
     }
-    err = (*mGetHandle)(reinterpret_cast<OMX_HANDLETYPE *>(component),
-            const_cast<char *>(name), appData,
-                const_cast<OMX_CALLBACKTYPE *>(callbacks));
-    if (strncmp(name, "OMX.Nvidia.drm.play", 19) == 0) {
+
+    OMX_ERRORTYPE err = (*mGetHandle)(
+            reinterpret_cast<OMX_HANDLETYPE *>(component),
+            const_cast<char *>(name),
+            appData, const_cast<OMX_CALLBACKTYPE *>(callbacks));
+
+    if (!strncmp(name, "OMX.Nvidia.drm.play", strlen("OMX.Nvidia.drm.play")))
+    {
         gOMXDrmPlayComponent = *component;
     }
 
-exit:
     return err;
 }
 
 OMX_ERRORTYPE NVOMXPlugin::destroyComponentInstance(
         OMX_COMPONENTTYPE *component) {
-    OMX_ERRORTYPE err = OMX_ErrorUndefined;
     if (mLibHandle == NULL) {
-        goto exit;
+        return OMX_ErrorUndefined;
     }
-    if (component == gOMXDrmPlayComponent) {
-        gOMXDrmPlayComponent = NULL;
-    }
-    err = (*mFreeHandle)(reinterpret_cast<OMX_HANDLETYPE *>(component));
 
-exit:
-    return err;
+    if (component == gOMXDrmPlayComponent)
+    {
+        gOMXDrmPlayComponent = 0;
+    }
+
+    return (*mFreeHandle)(reinterpret_cast<OMX_HANDLETYPE *>(component));
 }
 
 OMX_ERRORTYPE NVOMXPlugin::enumerateComponents(
@@ -131,7 +123,7 @@ OMX_ERRORTYPE NVOMXPlugin::getRolesOfComponent(
         return OMX_ErrorUndefined;
     }
 
-    OMX_U32 numRoles;
+    OMX_U32 numRoles = 0;
     OMX_ERRORTYPE err = (*mGetRolesOfComponentHandle)(
             const_cast<OMX_STRING>(name), &numRoles, NULL);
 
@@ -145,17 +137,19 @@ OMX_ERRORTYPE NVOMXPlugin::getRolesOfComponent(
             array[i] = new OMX_U8[OMX_MAX_STRINGNAME_SIZE];
         }
 
-        OMX_U32 numRoles2;
+        OMX_U32 numRoles2 = numRoles;
         err = (*mGetRolesOfComponentHandle)(
                 const_cast<OMX_STRING>(name), &numRoles2, array);
 
-    if (err != OMX_ErrorNone) {
-      return err;
-    }
+        if (err != OMX_ErrorNone ||
+            numRoles != numRoles2) {
 
-    if (numRoles2 != numRoles) {
-      return err;
-    }
+            if (numRoles != numRoles2 &&
+                err == OMX_ErrorNone) {
+                err = OMX_ErrorUndefined;
+            }
+            return err;
+        }
 
         for (OMX_U32 i = 0; i < numRoles; ++i) {
             String8 s((const char *)array[i]);
