@@ -65,9 +65,9 @@
     <bool name="config_intrusiveNotificationLed">true</bool>
 
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">true</bool>
+    <add-resource type="bool" name="config_intrusiveBatteryLed">true</add-resource>
 
-    <bool name="config_deviceHasVariableButtonBrightness">true</bool>
+    <add-resource type="bool" name="config_deviceHasVariableButtonBrightness">true</add-resource>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
@@ -152,10 +152,7 @@
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
-    <!-- Enable electronBeam animation instead of fading off. -->
-    <bool name="config_animateScreenLights">false</bool>
-
-    <!-- Boolean indicating whether the wifi chipset supports background scanning mechanism.
+   <!-- Boolean indicating whether the wifi chipset supports background scanning mechanism.
          This mechanism allows the host to remain in suspend state and the dongle to actively
          scan and wake the host when a configured SSID is detected by the dongle. This chipset
          capability can provide power savings when wifi needs to be always kept on.
@@ -265,6 +262,6 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">71</integer>
+    <add-resource type="integer" name="config_deviceHardwareWakeKeys">71</add-resource>
 
 </resources>
