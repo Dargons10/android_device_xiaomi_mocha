@@ -109,7 +109,8 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@2.0-impl \
     libs \
     libshim_zw \
-    libshim_atomic
+    libshim_atomic \
+    libshim_egl
 
 # Health HAL
 PRODUCT_PACKAGES += \

@@ -117,6 +117,10 @@ TARGET_RECOVERY_DEVICE_DIRS += device/xiaomi/mocha
 TARGET_RECOVERY_FSTAB := device/xiaomi/mocha/rootdir/etc/fstab.tn8
 BOARD_NO_SECURE_DISCARD := true
 
+#SHIMS
+TARGET_LD_SHIM_LIBS := \
+    /system/vendor/lib/egl/libEGL_tegra.so|libshim_egl.so
+
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
