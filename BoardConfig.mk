@@ -92,11 +92,8 @@ BOARD_EGL_WORKAROUND_BUG_10194508 := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 
-# CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS := \
-    hardware/cyanogen/cmhw \
-    device/xiaomi/mocha/cmhw
+# LineageHW
+BOARD_HARDWARE_CLASS := device/xiaomi/mocha/lineagehw
 
 # Offmode Charging
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
