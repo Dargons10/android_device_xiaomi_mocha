@@ -70,7 +70,7 @@ USE_OPENGL_RENDERER := true
 BOARD_DISABLE_TRIPLE_BUFFERED_DISPLAY_SURFACES := true
 
 # HIDL Manifest
-DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xmls
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 
 # Include
 TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/mocha/include
