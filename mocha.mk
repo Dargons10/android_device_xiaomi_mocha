@@ -207,7 +207,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-     android.hardware.power@1.0-impl \
+     android.hardware.power@1.0-service.mocha \
      power.tegra
 
 PRODUCT_CHARACTERISTICS := tablet
@@ -264,8 +264,7 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    $(LOCAL_PATH)/wifi/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf 
 
 # Wifi
 # All Shield devices xurrently use broadcom wifi / bluetooth modules
