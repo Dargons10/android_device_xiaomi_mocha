@@ -89,6 +89,9 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/mocha/mkbootimg.mk
 
+# HIDL Manifest
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
+
 # LineageHW
 BOARD_HARDWARE_CLASS := device/xiaomi/mocha/lineagehw
 
