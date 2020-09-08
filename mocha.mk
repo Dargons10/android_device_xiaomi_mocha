@@ -20,7 +20,8 @@ $(call inherit-product-if-exists, vendor/xiaomi/mocha/consolemode-blobs.mk)
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/audio.mocha.xml:system/etc/audio.mocha.xml
+    $(LOCAL_PATH)/audio/audio.mocha.xml:system/etc/audio.mocha.xml \
+    $(LOCAL_PATH)/audio/audio_effects.xml:system/vendor/etc/audio_effects.xml
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
@@ -167,10 +168,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
      ro.vendor.qti.sys.fw.empty_app_percent=25
 
 # Memtrack
-PRODUCT_PACKAGES += \
-    android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service
-
+#PRODUCT_PACKAGES += \
+    # android.hardware.memtrack@1.0-impl 
+    
 # Multi HAL configuration file
 PRODUCT_COPY_FILES += \
     device/xiaomi/mocha/sensors/etc/hals.conf:system/etc/sensors/hals.conf
