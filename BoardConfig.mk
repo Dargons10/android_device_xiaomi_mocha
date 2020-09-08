@@ -25,6 +25,8 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a15
 
+TARGET_NOT_USE_GZIP_RECOVERY_RAMDISK := true
+
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_ALSA_AUDIO := true
@@ -79,7 +81,7 @@ TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/mocha/include
 EXTENDED_FONT_FOOTPRINT := true
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=tn8
+BOARD_KERNEL_CMDLINE := vpr_resize androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -88,6 +90,7 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 TARGET_KERNEL_SOURCE := kernel/xiaomi/mocha
 TARGET_KERNEL_CONFIG := tegra12_android_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage
+BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_CUSTOM_BOOTIMG_MK := device/xiaomi/mocha/mkbootimg.mk
 
