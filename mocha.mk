@@ -25,8 +25,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
-    android.hardware.audio@2.0-service \
     android.hardware.audio.effect@2.0-impl \
+    android.hardware.broadcastradio@1.0-impl \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
@@ -56,7 +56,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service \
     libbt-vendor
 
 # Camera
@@ -65,7 +64,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl-legacy \
+    android.hardware.camera.provider@2.4-impl \
     camera.device@1.0-impl \
     camera.tegra \
     libmocha_camera \
@@ -82,6 +81,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
 
+# Configstore HAL
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-impl \
+    android.hardware.configstore@1.0-service
+
 # Custom tiles
 #PRODUCT_PACKAGES += \
     #ChargerTile \
@@ -89,8 +93,7 @@ PRODUCT_COPY_FILES += \
 
 # DRM HAL
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl \
-    android.hardware.drm@1.0-service
+    android.hardware.drm@1.0-impl 
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -106,7 +109,6 @@ PRODUCT_PACKAGES += \
 # Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
-    android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.mapper@2.0-impl \
     libs \
     libshim_zw \
@@ -156,8 +158,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.media.omx@1.0-impl \
-    android.hardware.media.omx@1.0-service
+    android.hardware.media.omx@1.0-impl
 
 # Memory Optimizations
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -168,8 +169,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
      ro.vendor.qti.sys.fw.empty_app_percent=25
 
 # Memtrack
-#PRODUCT_PACKAGES += \
-    # android.hardware.memtrack@1.0-impl 
+RODUCT_PACKAGES += \
+    android.hardware.memtrack@1.0-impl 
     
 # Multi HAL configuration file
 PRODUCT_COPY_FILES += \
@@ -286,8 +287,12 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bc
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk)
 
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-impl \
     android.hardware.wifi@1.0-service \
     conn_init \
     hostapd \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf 
+  
+
+ 
