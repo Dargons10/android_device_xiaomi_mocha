@@ -125,10 +125,12 @@ TARGET_RECOVERY_DEVICE_DIRS += device/xiaomi/mocha
 TARGET_RECOVERY_FSTAB := device/xiaomi/mocha/rootdir/etc/fstab.tn8
 BOARD_NO_SECURE_DISCARD := true
 
-
-BOARD_SEPOLICY_DIRS += device/xiaomi/mocha/sepolicy
-
-#SHIMS
+# Sepolicy
+BOARD_SEPOLICY_DIRS := \
+                       device/xiaomi/mocha/sepolicy/common \
+                       device/xiaomi/mocha/sepolicy/lineage-common \
+                       device/xiaomi/mocha/sepolicy/mocha
+# SHIMS
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/egl/libEGL_tegra.so|libshim_egl.so \
     /system/vendor/lib/libnvomxadaptor.so|libnvomxadaptor_shim.so 
