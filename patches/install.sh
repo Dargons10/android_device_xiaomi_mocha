@@ -4,7 +4,7 @@ echo $1
 rootdirectory="$PWD"
 # ---------------------------------
 
-dirs="system/core frameworks/native"
+dirs="bionic/libm system/core frameworks/native"
 
 # red + nocolor
 RED='\033[0;31m'

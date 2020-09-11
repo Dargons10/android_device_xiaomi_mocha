@@ -16,6 +16,8 @@
 
 $(call inherit-product-if-exists, vendor/xiaomi/mocha/mocha-vendor.mk)
 $(call inherit-product-if-exists, vendor/xiaomi/mocha/consolemode-blobs.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -43,11 +45,6 @@ PRODUCT_PACKAGES += \
     libtinyalsa \
     xaplay
 
-#Boot
-PRODUCT_AAPT_CONFIG += xlarge large
-TARGET_SCREEN_HEIGHT := 2048
-TARGET_SCREEN_WIDTH := 1536
-TARGET_TEGRA_VERSION := t124
 
 # Bluetooth
 PRODUCT_COPY_FILES += \

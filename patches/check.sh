@@ -1,7 +1,7 @@
 #!/bin/sh
 
 rootdirectory="$PWD"
-dirs="system/core frameworks/native"
+dirs="bionic/libm system/core frameworks/native"
 
 RED='\033[0;31m'
 NC='\033[0m'
