@@ -11,7 +11,7 @@ import init.tn8_common.rc
 import init.t124.rc
 import init.cal.rc
 import init.tn8.usb.rc
-import init.ray_touch.rc
+
 
 on post-fs-data
     chmod 0644 /sys/kernel/cluster/active
@@ -61,6 +61,6 @@ service media /system/bin/mediaserver
 service uim /system/bin/brcm-uim-sysfs
     class late_start
     user root
-    group bluetooth net_bt_admin net_bt
+    group bluetooth bluetooth bluetooth
     seclabel u:r:uim:s0
 
