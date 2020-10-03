@@ -5,20 +5,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
     persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldacs
 
-# BT
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bt.bdaddr_path=/data/mocha_btmacaddr.txt
-
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=opengl \
     persist.sys.ui.hw=true \
     debug.sf.disable_backpressure=1 \
     debug.sf.latch_unsignaled=1 \
-    debug.hwui.render_dirty_regions=false
+    debug.hwui.render_dirty_regions=false  
 
 # Lineage genuine
 PRODUCT_PROPERTY_OVERRIDES += \
