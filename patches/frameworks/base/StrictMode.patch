@@ -1,8 +1,8 @@
 diff --git a/core/java/android/os/StrictMode.java b/core/java/android/os/StrictMode.java
-index 3b6df5df13a..e4642cec87e 100644
+index 3b6df5df13a..fd8b226c469 100644
 --- a/core/java/android/os/StrictMode.java
 +++ b/core/java/android/os/StrictMode.java
-@@ -1659,10 +1659,13 @@ public final class StrictMode {
+@@ -1659,10 +1659,15 @@ public final class StrictMode {
                      // We restore the current policy below, in the finally block.
                      setThreadPolicyMask(0);
  
@@ -10,17 +10,19 @@ index 3b6df5df13a..e4642cec87e 100644
 -                        RuntimeInit.getApplicationObject(),
 -                        violationMaskSubset,
 -                        info);
-+                     IActivityManager am = ActivityManager.getService();
++                    IActivityManager am = ActivityManager.getService();
 +                    if (am == null) {
 +                        Log.d(TAG, "No activity manager; failed to handle strict violation!");
 +                    } else {
 +                        am.handleApplicationStrictModeViolation(RuntimeInit.getApplicationObject(),
 +                                violationMaskSubset, info);
 +                    }
++
++
                  } catch (RemoteException e) {
                      if (e instanceof DeadObjectException) {
                          // System process is dead; ignore
-@@ -2082,10 +2085,13 @@ public final class StrictMode {
+@@ -2082,10 +2087,14 @@ public final class StrictMode {
                  // We restore the current policy below, in the finally block.
                  setThreadPolicyMask(0);
  
@@ -28,13 +30,14 @@ index 3b6df5df13a..e4642cec87e 100644
 -                    RuntimeInit.getApplicationObject(),
 -                    violationMaskSubset,
 -                    info);
-+                 IActivityManager am = ActivityManager.getService();
-+                if (am == null) {
-+                    Log.d(TAG, "No activity manager; failed to handle strict violation!");
-+                } else {
-+                    am.handleApplicationStrictModeViolation(RuntimeInit.getApplicationObject(),
-+                            violationMaskSubset, info);
-+                }
++                IActivityManager am = ActivityManager.getService();
++                    if (am == null) {
++                        Log.d(TAG, "No activity manager; failed to handle strict violation!");
++                    } else {
++                        am.handleApplicationStrictModeViolation(RuntimeInit.getApplicationObject(),
++                                violationMaskSubset, info);
++                    }
++
              } catch (RemoteException e) {
                  if (e instanceof DeadObjectException) {
                      // System process is dead; ignore

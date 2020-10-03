@@ -1,16 +1,14 @@
 diff --git a/services/surfaceflinger/SurfaceFlinger.cpp b/services/surfaceflinger/SurfaceFlinger.cpp
-index cf70bd020..c86ce6fb8 100644
+index cf70bd020..f0751d2b3 100644
 --- a/services/surfaceflinger/SurfaceFlinger.cpp
 +++ b/services/surfaceflinger/SurfaceFlinger.cpp
-@@ -220,7 +220,10 @@ SurfaceFlinger::SurfaceFlinger()
- 
+@@ -221,6 +221,9 @@ SurfaceFlinger::SurfaceFlinger()
      property_get("debug.sf.showupdates", value, "0");
      mDebugRegion = atoi(value);
--
-+    
+ 
 +    property_get("debug.sf.disable_hwc", value, "0");
 +    mDebugDisableHWC = atoi(value);
-+    
++
      property_get("debug.sf.ddms", value, "0");
      mDebugDDMS = atoi(value);
      if (mDebugDDMS) {
