@@ -6,6 +6,7 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
+
 on early-init
     # create /oem symbol link
     symlink /system/vendor/oem /oem
@@ -30,18 +31,12 @@ on fs
     mount_all /fstab.tn8
     swapon_all /fstab.tn8
 
-on post-fs-data
-    # Set SELinux security contexts for NvCPL keylayout files.
-    mkdir /data/system/devices 0774 system system
-    mkdir /data/system/devices/keylayout 0774 system system
-    restorecon_recursive /data/system/devices/keylayout
-
-    
 on boot
     #max resolution supported for Miracast is 1080p, represented interms of macroblocks
     setprop nvwfd.maxresolution_macroblocks 8160
     #enable Miracast game mode support
     setprop nvwfd.gamemode 1
+#    setprop wifi.supplicant wpa_suppl_nl
 
 on init
      setprop ro.feature.stylus 1

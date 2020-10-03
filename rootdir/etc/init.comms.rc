@@ -16,22 +16,26 @@ on boot
     # power up/down interface
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /sys/class/rfkill/rfkill0/type
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
+    write /sys/class/rfkill/rfkill0/state 0
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
 
     # bluetooth MAC address programming
     chown bluetooth bluetooth ro.bt.bdaddr_path
     chown bluetooth bluetooth /system/etc/bluetooth
+    chown bluetooth net_bt_stack /mnt/factory/bluetooth/bt_mac.txt
+    setprop ro.bt.bdaddr_path "/mnt/factory/bluetooth/bt_mac.txt"
 
-	# Wifi firmware reload path
+
+    # Wifi firmware reload path
     chown wifi wifi /sys/module/bcmdhd/parameters/firmware_path
-    
 
 on post-fs-data
     mkdir /data/misc/wifi 0771 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/firmware 0770 wifi system
-    setprop wifi.supplicant wpa_suppl_nl
+    setprop wifi.suplicant wpa_suppl_nl
+    
 
 service wpa_supplicant /system/vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -45,6 +49,7 @@ service wpa_supplicant /system/vendor/bin/hw/wpa_supplicant \
     disabled
     oneshot
 
+
 service dns_masq /system/bin/dnsmasq --no-daemon --no-resolv --no-poll --dhcp-option-force=43,ANDROID_METERED --dhcp-range=192.168.42.2,192.168.42.254,1h &
     class main
     user dhcp
@@ -52,5 +57,4 @@ service dns_masq /system/bin/dnsmasq --no-daemon --no-resolv --no-poll --dhcp-op
     disabled
     oneshot
 
-# Wifi support rx-filter
-    setprop wifi.rx-filter 1
+

@@ -61,6 +61,6 @@ service media /system/bin/mediaserver
 service uim /system/bin/brcm-uim-sysfs
     class late_start
     user root
-    group bluetooth bluetooth bluetooth
+    group bluetooth net_bt_admin net_bt
     seclabel u:r:uim:s0
 

@@ -61,7 +61,7 @@ on boot
     write /sys/block/mmcblk0/queue/scheduler "deadline"
     write /sys/block/mmcblk0/queue/nr_requests 4
 
- # Little VM tweaks
+# Little VM tweaks
     write /proc/sys/vm/swappiness 80
     write /proc/sys/vm/vfs_cache_pressure 100
     
@@ -92,3 +92,4 @@ service mac_generator /system/vendor/bin/macaddr.sh -op
     group root
     seclabel u:r:mac_generator:s0
     oneshot
+
