@@ -1,0 +1,38 @@
+From 0283cd851451c209c9938ad9896a547d2e0a179f Mon Sep 17 00:00:00 2001
+From: Bilux <i.bilux@gmail.com>
+Date: Fri, 6 Nov 2020 19:25:49 +0100
+Subject: [PATCH] HWC2On1Adapter: Fix fence leak
+
+* GL blobs hit this leak, that ultimately results in surfaceflinger to crash and SystemUI soft-resetting every so often when under any form of stressful loads.
+* Removes the fence dump from Layer::dump, since:
+  a) It was leaking (a dup() without a close())
+  b) It's not that useful anyway since it wasn't displaying the actual fence fd
+Signed-off-by: bilux <i.bilux@gmail.com>
+---
+ libs/hwc2on1adapter/HWC2On1Adapter.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/libs/hwc2on1adapter/HWC2On1Adapter.cpp b/libs/hwc2on1adapter/HWC2On1Adapter.cpp
+index 77f06bbbe7..08b28c5b5b 100644
+--- a/libs/hwc2on1adapter/HWC2On1Adapter.cpp
++++ b/libs/hwc2on1adapter/HWC2On1Adapter.cpp
+@@ -1292,7 +1292,8 @@ Error HWC2On1Adapter::Display::set(hwc_display_contents_1& hwcContents) {
+     auto& clientTargetLayer = hwcContents.hwLayers[numLayers - 1];
+     if (clientTargetLayer.compositionType == HWC_FRAMEBUFFER_TARGET) {
+         clientTargetLayer.handle = mClientTarget.getBuffer();
+-        clientTargetLayer.acquireFenceFd = mClientTarget.getFence();
++        close(mClientTarget.getFence());
++        clientTargetLayer.acquireFenceFd = -1;
+     } else {
+         ALOGE("[%" PRIu64 "] set: last HWC layer wasn't FRAMEBUFFER_TARGET",
+                 mId);
+@@ -2094,8 +2095,7 @@ std::string HWC2On1Adapter::Layer::dump() const {
+     } else if (mCompositionType == HWC2::Composition::Sideband) {
+         output << "  Handle: " << mSidebandStream << '\n';
+     } else {
+-        output << "  Buffer: " << mBuffer.getBuffer() << "/" <<
+-                mBuffer.getFence() << '\n';
++        output << "  Buffer: " << mBuffer.getBuffer() << '\n';
+         output << fill << "  Display frame [LTRB]: " <<
+                 rectString(mDisplayFrame) << '\n';
+         output << fill << "  Source crop: " <<
