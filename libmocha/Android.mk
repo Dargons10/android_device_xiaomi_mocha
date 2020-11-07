@@ -26,9 +26,8 @@ LOCAL_SRC_FILES:= \
         camera/CameraUtils.cpp \
         camera/VendorTagDescriptor.cpp \
         camera/CameraParameters.cpp \
-       # sensor.c \
-        camera.c
-
+        camera.c \
+        #sensor.c 
 
 LOCAL_SHARED_LIBRARIES := \
         libcutils \
@@ -72,7 +71,7 @@ LOCAL_SRC_FILES := \
     bionic/pthread_cond.cpp
 LOCAL_SHARED_LIBRARIES := libc
 LOCAL_MODULE := libmocha_libc
-LOCAL_CLANG := false
+LOCAL_CLANG := true
 LOCAL_CXX_STL := none
 LOCAL_SANITIZE := never
 LOCAL_MODULE_TAGS := optional

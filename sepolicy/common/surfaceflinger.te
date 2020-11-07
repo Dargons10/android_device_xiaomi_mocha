@@ -69,3 +69,9 @@ allow surfaceflinger hwc_data_file:dir {create_dir_perms};
 
 # Allow GL to access ptimer_scale_factor
 allow surfaceflinger sysfs_gpu:file r_file_perms;
+
+allow surfaceflinger system_data_file:dir {write};
+allow surfaceflinger system_data_file:file { append open };
+allow surfaceflinger system_data_file:file { lock };
+allow surfaceflinger system_data_file:file { write };
+

@@ -17,7 +17,6 @@
 $(call inherit-product-if-exists, vendor/xiaomi/mocha/mocha-vendor.mk)
 $(call inherit-product-if-exists, vendor/xiaomi/mocha/consolemode-blobs.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -56,18 +55,18 @@ PRODUCT_PACKAGES += \
     libbt-vendor
 
 # Camera
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
+#PRODUCT_COPY_FILES += \
+    # $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
 
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
-    camera.device@1.0-impl \
-    camera.tegra \
-    libmocha_camera \
-    libmocha_omx \
-    libpowerservice_client \
-    libmocha_libc
+# PRODUCT_PACKAGES += \
+   # android.hardware.camera.provider@2.4-impl \
+   # camera.device@1.0-impl \
+   # camera.tegra \
+   # libmocha_camera \
+   # libmocha_omx \
+   # libpowerservice_client \
+   # libmocha_libc 
 
 
 # Comm Permissions
@@ -107,8 +106,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.renderscript@1.0-imp \
     libs \
-    libshim_zw \
     libshim_atomic \
     libshim_egl
 
@@ -168,7 +167,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Memtrack
 RODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl 
-    
+
 # Multi HAL configuration file
 PRODUCT_COPY_FILES += \
     device/xiaomi/mocha/sensors/etc/hals.conf:system/etc/sensors/hals.conf
@@ -242,10 +241,7 @@ PRODUCT_PACKAGES += \
     init.ussrd.rc \
     power.tn8.rc \
     ueventd.tn8.rc
-
-# Renderscript
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
+ 
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -258,6 +254,7 @@ PRODUCT_PACKAGES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
     android.hardware.thermal@1.1-impl \
     thermal.tn8
 
@@ -281,12 +278,10 @@ PRODUCT_COPY_FILES += \
 # Wifi
 # All Shield devices xurrently use broadcom wifi / bluetooth modules
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk)
+
 
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-impl \
     android.hardware.wifi@1.0-service \
-    conn_init \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf 

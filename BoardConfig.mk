@@ -38,7 +38,7 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/xiaomi/mocha/bluetooth
 
 # Binder API
-TARGET_USES_64_BIT_BINDER := true
+TARGET_USES_64_BIT_BINDER := false
 
 # Board
 TARGET_BOARD_PLATFORM := tegra
@@ -63,7 +63,7 @@ BOARD_HAVE_BCM_FM := true
 # FS
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-TARGET_EXFAT_DRIVER := sdfat
+#TARGET_EXFAT_DRIVER := sdfat
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USES_MKE2FS := true
 
@@ -110,6 +110,9 @@ BOARD_FORCECALL_GETDISPLAY := true
 # LineageHW
 BOARD_HARDWARE_CLASS := device/xiaomi/mocha/lineagehw
 
+#Mermory
+MALLOC_SVELTE := true
+
 # Offmode Charging
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BACKLIGHT_PATH := "/sys/class/backlight/lcd-backlight/brightness"
@@ -131,8 +134,8 @@ BOARD_NO_SECURE_DISCARD := true
 
 # Sepolicy
 BOARD_SEPOLICY_DIRS := \
-                       device/xiaomi/mocha/sepolicy/common \
-                       device/xiaomi/mocha/sepolicy/lineage-common \
+                       #device/xiaomi/mocha/sepolicy/common \
+                       #device/xiaomi/mocha/sepolicy/lineage-common \
                        device/xiaomi/mocha/sepolicy/mocha
 # SHIMS
 TARGET_LD_SHIM_LIBS := \
@@ -158,6 +161,4 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path
 #WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
 #WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
-# Zygote whitelist extra paths
-ZYGOTE_WHITELIST_PATH_EXTRA := \"/dev/nvhost-ctrl\",\"/dev/nvmap\",
 

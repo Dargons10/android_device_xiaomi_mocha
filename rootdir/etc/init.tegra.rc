@@ -6,7 +6,6 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-import init.${ro.boot.modem}.rc
 import init.comms.rc
 
 on early-init
