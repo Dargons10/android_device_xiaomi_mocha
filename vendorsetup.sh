@@ -1,1 +1,1 @@
-add_lunch_combo lineage_mocha-userdebug
+add_lunch_combo carbon_mocha-userdebug
