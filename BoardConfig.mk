@@ -132,6 +132,10 @@ TARGET_RECOVERY_DEVICE_DIRS += device/xiaomi/mocha
 TARGET_RECOVERY_FSTAB := device/xiaomi/mocha/rootdir/etc/fstab.tn8
 BOARD_NO_SECURE_DISCARD := true
 
+#RenderScript
+OVERRIDE_RS_DRIVER := libnvRSDriver.so
+BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a15
+
 # Sepolicy
 BOARD_SEPOLICY_DIRS := \
                        #device/xiaomi/mocha/sepolicy/common \
