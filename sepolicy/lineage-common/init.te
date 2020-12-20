@@ -21,4 +21,3 @@ allow init proc_wmem_max_writable:file rw_file_perms;
 
 # Shims
 allow init audioserver:process noatsecure;
-
