@@ -27,20 +27,14 @@ on boot
     # TBD: Remove the below line that give permissions for scaling_governor
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/target_loads
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
-    chown system system /sys/devices/system/cpu/cpufreq/interactive/boost_factor
-    write /sys/devices/system/cpu/cpufreq/interactive/io_busy_threshold 50
+    # Smoke kernel default governor
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor smartmax
 
-    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/down_delay 500
-    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/idle_top_freq 204000
-    write /sys/devices/system/cpu/cpuquiet/current_governor userspace
+    # Smoke kernel default governor settings
+    write /sys/devices/system/cpu/cpufreq/smartmax/awake_ideal_freq 1326000
+    write /sys/devices/system/cpu/cpufreq/smartmax/boost_freq 1428000
+    write /sys/devices/system/cpu/cpufreq/smartmax/touch_poke_freq 1326000
+    write /sys/devices/system/cpu/cpufreq/smartmax/input_boost_duration 45000
 
     chown system system /sys/devices/tegradc.0/enable
     chown system system /sys/devices/tegradc.1/enable
@@ -74,10 +68,6 @@ on init
     mkdir /mnt/tmp 0770 system system
     mount tmpfs tmpfs /mnt/tmp mode=0775,gid=1003
 
-    # Immersion
-    export VIBE_PIPE_PATH /dev/pipes
-    mkdir /dev/pipes 0771 system system
-
 # Loads real wifi and bt mac from /dev/block/platform/sdhci-tegra.3/by-name/BKB
 service conn_wifi /system/bin/conn_init -op
     class main
@@ -85,4 +75,3 @@ service conn_wifi /system/bin/conn_init -op
     group root
     seclabel u:r:conn_wifi:s0
     oneshot
-
