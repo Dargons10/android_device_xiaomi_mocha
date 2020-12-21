@@ -6,7 +6,6 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-
 on early-init
     # create /oem symbol link
     symlink /system/vendor/oem /oem
@@ -17,7 +16,7 @@ on early-init
     symlink /system/vendor/lbh /lbh
     chmod 0755 /lbh
     chown root system /lbh
- 
+
     #hack to make hacked mipad GL blobs work (need /gl/libEGL_tegra.so path)
     symlink /system/lib/egl /gl
     chmod 0755 /gl
@@ -31,6 +30,13 @@ on fs
     mount_all /fstab.tn8
     swapon_all /fstab.tn8
 
+on post-fs-data
+    # Set SELinux security contexts for NvCPL keylayout files.
+    mkdir /data/system/devices 0774 system system
+    mkdir /data/system/devices/keylayout 0774 system system
+    restorecon_recursive /data/system/devices/keylayout
+
+    
 on boot
     #max resolution supported for Miracast is 1080p, represented interms of macroblocks
     setprop nvwfd.maxresolution_macroblocks 8160
@@ -63,7 +69,7 @@ on init
     setprop input.nonwhitelistedmode 3
     setprop keyguard.no_require_sim true
     setprop persist.tegra.didim.enable 0
-    write /proc/sys/vm/page-cluster 0
+    write /d/tegra_actmon/cpu_emc/avg_act_threshold 50000
 
 service charger /charger
     group graphics input
@@ -73,6 +79,5 @@ service charger /charger
 on charger
     setprop sys.usb.config mtp
     mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
-    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
-    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 0
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp -1

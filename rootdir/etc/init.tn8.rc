@@ -14,10 +14,13 @@ import init.tn8.usb.rc
 
 on post-fs-data
     chmod 0644 /sys/kernel/cluster/active
-
-    chown system system /dev/sysmatdrv
-    chmod 0660 /dev/sysmatdrv
-    insmod /system/lib/modules/texfat.ko
+    write /sys/class/gpio/export 61
+    write /sys/class/gpio/gpio61/direction out
+    write /sys/class/gpio/gpio61/value 0
+    chown root system /sys/class/gpio/gpio61/value
+    chmod 0664 /sys/class/gpio/gpio61/value
+    chmod 0644 /sys/kernel/cluster/active
+    mkdir /data/sensors 0777 system system
 
 on init
     # Mount a tmpfs into /mnt/tmp for hosting nvram, phs shared memory
